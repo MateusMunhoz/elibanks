@@ -23,10 +23,10 @@ void menuJogar()
         switch (opcao)
         {
         case 1:
-            if (ativo == 1)
+ /*           if (ativo == 1)
             {
                 acharCelulasMortas(); // Atualiza com '+' quando o ativo está ligado
-            }
+            }*/
             apresentarMesaJogo();
             break;
         case 2:
@@ -36,11 +36,11 @@ void menuJogar()
         case 3:
 
             posicionarCelulaViva();
-            if (ativo == 1)
+/*           if (ativo == 1)
             {
                 system("cls");
                 acharCelulasMortas(); // Atualiza após posicionar células
-            }
+            }*/ 
             apresentarMesaJogo();
             break;
         case 4:

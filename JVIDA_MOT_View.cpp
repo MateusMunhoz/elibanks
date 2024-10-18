@@ -57,6 +57,11 @@ int menuDimensaoMatriz()
 void apresentarMesaJogo()
 {
     //system("cls");
+    if (ativo == 1)
+    {
+        acharCelulasMortas();
+    }
+    
     printf("   ");
     for (int j = 0; j < dim; j++)
     {
@@ -73,6 +78,9 @@ void apresentarMesaJogo()
             printf("%2c ", matrizJogo[i][k]);
         }
     }
+
+    
+    
     printf("\n");
 }
 
