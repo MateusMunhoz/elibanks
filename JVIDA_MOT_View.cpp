@@ -5,6 +5,7 @@ Mateus Munhoz Guimaraes
 Osvaldo Kiyokazu Reffi Onishi
 Thales de Souza Martins
 */
+//gays
 
 #include "JVIDA_MOT_View.h"
 
