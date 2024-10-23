@@ -56,6 +56,10 @@ int menuDimensaoMatriz()
 void apresentarMesaJogo()
 {
     //system("cls");
+    if (ativo == 1){
+        acharCelulasMortas();
+    }
+
     printf("   ");
     for (int j = 0; j < dim; j++)
     {
@@ -73,6 +77,7 @@ void apresentarMesaJogo()
         }
     }
     printf("\n");
+    
 }
 
 void posicionarCelulaViva() // Funcao utilizada para posicionar uma celula viva em uma coordenada especificada pelo jogador, aonde e feito tambem o tratamento de casos como se ja houver uma celula naquela coordenada, dando ao usuario a opcao de remove-la ou mudar a coordenada aonde colocar a celula
@@ -94,6 +99,12 @@ void posicionarCelulaViva() // Funcao utilizada para posicionar uma celula viva 
         scanf("%d", &coordenadaL);
         printf("\n");
         system("cls");
+        if (ativo == 1)
+        {
+            system("cls");
+            acharCelulasMortas();
+        }
+        
 
         if (coordenadaC < dim && coordenadaC >= 0 && coordenadaL >= 0 && coordenadaL < dim) // Verifica se as coordenadas estão dentro do limite da matriz
         {

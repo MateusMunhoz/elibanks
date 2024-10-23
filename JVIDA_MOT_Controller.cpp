@@ -22,11 +22,7 @@ void menuJogar()
         opcao = apresentaMenu();
         switch (opcao)
         {
-        case 1:
-            if (ativo == 1)
-            {
-                acharCelulasMortas(); // Atualiza com '+' quando o ativo está ligado
-            }
+        case 1: // Atualiza com '+' quando o ativo está ligado
             apresentarMesaJogo();
             break;
         case 2:
@@ -36,11 +32,6 @@ void menuJogar()
         case 3:
 
             posicionarCelulaViva();
-            if (ativo == 1)
-            {
-                system("cls");
-                acharCelulasMortas(); // Atualiza após posicionar células
-            }
             apresentarMesaJogo();
             break;
         case 4:
@@ -77,8 +68,21 @@ void preencherMesaJogo()
         for (int colunas = 0; colunas < dim; colunas++) // j são as colunas
         {
             matrizJogo[linhas][colunas] = '.'; // Preenche a matriz com '.'
+            
         }
     }
+}''
+
+void preencherMesaAux()
+{
+    for (int linhas = 0; linhas < dim; linhas++) // i são as linhas
+    {
+        for (int colunas = 0; colunas < dim; colunas++) // j são as colunas
+        {
+            matrizJogoAux[linhas][colunas] = matrizJogo[linhas][colunas]; // Preenche a matriz com '.'
+        }
+    }
+    //teste
 }
 
 void acharCelulasMortas()
