@@ -54,7 +54,7 @@ void menuJogar()
         case 5:
 
             ativarReproducao = !ativarReproducao;
-            //          preencherReproduzirMesaAux();
+            preencherReproduzirMesaAux();
             break;
 
         default:
@@ -84,37 +84,21 @@ void preencherMesaJogo()
 
 }
 
-/*void preencherReproduzirMesaAux()
+void preencherReproduzirMesaAux()
 {
     int contadorVizinhos = 0;
-    if (ativarReproducao == 1)
+    if (!ativarReproducao)
     {
         for (int linhas = 0; linhas < dim; linhas++) // i são as linhas
         {
             for (int colunas = 0; colunas < dim; colunas++) // j são as colunas
             {
                 matrizJogoAux[linhas][colunas] = matrizJogo[linhas][colunas]; // Preenche a matriz com '.'
-                for (int i = -1; i <= 1; i++)                                 // Verifica os vizinhos
-                {
-                    for (int j = -1; j <= 1; j++)
-                    {
 
-                        int novaLinha = linhas + i;
-                        int novaColuna = colunas + j;
-
-                        if (matrizJogoAux[novaLinha][novaColuna] == 'O')
-                        {
-                            if (matrizJogoAux[novaLinha][novaColuna] == '+')
-                            {
-                                matrizJogo[novaLinha][novaColuna] = 'O';
-                            }
-                        }
-                    }
-                }
             }
         }
     }
-}*/
+}
 
 void controlarCelulasMortas()
 {

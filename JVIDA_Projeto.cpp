@@ -13,4 +13,5 @@ Thales de Souza Martins
 
 int main(){   
     menuJogar();
+    
 }
