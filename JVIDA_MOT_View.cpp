@@ -16,7 +16,7 @@ int apresentaMenu()
     printf("2 - Limpar o Mapa\n");
     printf("3 - Incluir/excluir celulas vivas\n");
     printf("4 - Mostrar/Esconder os mortos-vizinhos\n\n");
-    //    printf("5 - Iniciar o processo\n");
+    printf("5 - Iniciar o processo\n");
     //    printf("6 - Apresentar as listas\n\n");
     //    printf("7 - Gravar uma geracao inicial cadastrada\n");
     //    printf("8 - Recuperar uma geracao inicial cadastrada\n");
@@ -56,8 +56,8 @@ int menuDimensaoMatriz()
 void apresentarMesaJogo()
 {
     //system("cls");
-    if (ativo == 1){
-        acharCelulasMortas();
+    if (!desativaCelMortas){
+        controlarCelulasMortas();
     }
 
     printf("   ");
@@ -99,10 +99,11 @@ void posicionarCelulaViva() // Funcao utilizada para posicionar uma celula viva 
         scanf("%d", &coordenadaL);
         printf("\n");
         system("cls");
-        if (ativo == 1)
+        
+        if (!desativaCelMortas)
         {
             system("cls");
-            acharCelulasMortas();
+            controlarCelulasMortas();
         }
         
 
@@ -125,14 +126,15 @@ void posicionarCelulaViva() // Funcao utilizada para posicionar uma celula viva 
                         {
                             int novaLinha = coordenadaL + i;
                             int novaColuna = coordenadaC + j;
+
                             if (novaLinha >= 0 && novaLinha < dim && novaColuna >= 0 && novaColuna < dim)
                             {
-                                if (ativo == 1)
+                                if (!desativaCelMortas)
                                 {
                                     if (matrizJogo[novaLinha][novaColuna] == '+')
                                     {
                                         matrizJogo[novaLinha][novaColuna] = '.';
-                                        acharCelulasMortas();
+                                        controlarCelulasMortas();
                                     }
                                 }
                             }
@@ -158,9 +160,9 @@ void posicionarCelulaViva() // Funcao utilizada para posicionar uma celula viva 
             printf("Escolha outra coordenada \n");
         }
 
-        if (ativo == 1)
+        if (!desativaCelMortas)
         {
-            acharCelulasMortas();
+            controlarCelulasMortas();
         }
 
         apresentarMesaJogo();

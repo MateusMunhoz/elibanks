@@ -16,41 +16,51 @@ void menuJogar()
     system("cls");
     preencherMesaJogo();
     apresentarMesaJogo();
+
     int opcao;
+    
     do
     {
+
         opcao = apresentaMenu();
         switch (opcao)
+
         {
-        case 1: // Atualiza com '+' quando o ativo está ligado
+        case 1: 
+
             apresentarMesaJogo();
             break;
+
         case 2:
+
             system("cls");
             limparMatriz();
             break;
+
         case 3:
 
             posicionarCelulaViva();
             apresentarMesaJogo();
             break;
+
         case 4:
+
             system("cls");
-            ativo = (ativo == 1) ? 0 : 1; // Alterna entre mostrar ou não os vizinhos
-            if (ativo == 1)
-            {
-                acharCelulasMortas();
-            }
-            else
-            {
-                esconderCelulasMortas(); // Limpa os '+' e mantém apenas os 'O'
-            }
+            desativaCelMortas = !desativaCelMortas; // Alterna entre mostrar ou não os vizinhos
+            controlarCelulasMortas();
             apresentarMesaJogo();
             break;
+
+        case 5:
+
+            ativarReproducao = !ativarReproducao;
+            //          preencherReproduzirMesaAux();
+            break;
+
         default:
             break;
         }
-
+        
     } while (opcao != 0);
 }
 
@@ -63,47 +73,40 @@ void limparMatriz()
 
 void preencherMesaJogo()
 {
+
     for (int linhas = 0; linhas < dim; linhas++) // i são as linhas
     {
         for (int colunas = 0; colunas < dim; colunas++) // j são as colunas
         {
             matrizJogo[linhas][colunas] = '.'; // Preenche a matriz com '.'
-            
         }
     }
-}''
 
-void preencherMesaAux()
-{
-    for (int linhas = 0; linhas < dim; linhas++) // i são as linhas
-    {
-        for (int colunas = 0; colunas < dim; colunas++) // j são as colunas
-        {
-            matrizJogoAux[linhas][colunas] = matrizJogo[linhas][colunas]; // Preenche a matriz com '.'
-        }
-    }
-    //teste
 }
 
-void acharCelulasMortas()
+/*void preencherReproduzirMesaAux()
 {
-    for (int linhas = 0; linhas < dim; linhas++)
+    int contadorVizinhos = 0;
+    if (ativarReproducao == 1)
     {
-        for (int colunas = 0; colunas < dim; colunas++)
+        for (int linhas = 0; linhas < dim; linhas++) // i são as linhas
         {
-            if (matrizJogo[linhas][colunas] == 'O') // Encontra célula viva
+            for (int colunas = 0; colunas < dim; colunas++) // j são as colunas
             {
-                for (int i = -1; i <= 1; i++) // Verifica os vizinhos
+                matrizJogoAux[linhas][colunas] = matrizJogo[linhas][colunas]; // Preenche a matriz com '.'
+                for (int i = -1; i <= 1; i++)                                 // Verifica os vizinhos
                 {
                     for (int j = -1; j <= 1; j++)
                     {
+
                         int novaLinha = linhas + i;
                         int novaColuna = colunas + j;
-                        if (novaLinha >= 0 && novaLinha < dim && novaColuna >= 0 && novaColuna < dim)
+
+                        if (matrizJogoAux[novaLinha][novaColuna] == 'O')
                         {
-                            if (matrizJogo[novaLinha][novaColuna] == '.')
+                            if (matrizJogoAux[novaLinha][novaColuna] == '+')
                             {
-                                matrizJogo[novaLinha][novaColuna] = '+';
+                                matrizJogo[novaLinha][novaColuna] = 'O';
                             }
                         }
                     }
@@ -111,21 +114,57 @@ void acharCelulasMortas()
             }
         }
     }
-}
+}*/
 
-void esconderCelulasMortas()
+void controlarCelulasMortas()
 {
-    for (int linhas = 0; linhas < dim; linhas++)
+    if (!desativaCelMortas)
     {
-        for (int colunas = 0; colunas < dim; colunas++)
+        for (int linhas = 0; linhas < dim; linhas++)
         {
-            if (matrizJogo[linhas][colunas] == '+') // Remove os '+'
+            for (int colunas = 0; colunas < dim; colunas++)
             {
-                matrizJogo[linhas][colunas] = '.'; // Retorna a células mortas ('.')
+                if (matrizJogo[linhas][colunas] == 'O') // Encontra célula viva
+                {
+                    for (int i = -1; i <= 1; i++) // Verifica os vizinhos
+                    {
+                        for (int j = -1; j <= 1; j++)
+                        {
+                            int novaLinha = linhas + i;
+                            int novaColuna = colunas + j;
+
+                            if (novaLinha >= 0 && novaLinha < dim && novaColuna >= 0 && novaColuna < dim)
+                            {
+                                if (matrizJogo[novaLinha][novaColuna] == '.')
+                                {
+                                    matrizJogo[novaLinha][novaColuna] = '+';
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        for (int linhas = 0; linhas < dim; linhas++)
+        {
+            for (int colunas = 0; colunas < dim; colunas++)
+            {
+                if (matrizJogo[linhas][colunas] == '+') // Remove os '+'
+                {
+
+                    matrizJogo[linhas][colunas] = '.'; // Retorna a células mortas ('.')
+
+                }
             }
         }
     }
 }
+
+
 
 void limparBuffer()
 {

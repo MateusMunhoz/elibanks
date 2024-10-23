@@ -11,6 +11,7 @@ void menuJogar();
 int menuDimensaoMatriz();
 void limparMatriz();
 void preencherMesaJogo();
-void acharCelulasMortas();
+void controlarCelulasMortas();
 void limparBuffer();
 void esconderCelulasMortas();
+void preencherReproduzirMesaAux();
